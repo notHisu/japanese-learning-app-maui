@@ -11,5 +11,6 @@
     <!--<ShellContent Title="Vocabulary" ContentTemplate="{DataTemplate views:VocabularyPage}" Route="VocabularyPage"/>
     <ShellContent Title="Kanji" ContentTemplate="{DataTemplate views:KanjiPage}" Route="KanjiPage"/>
     <ShellContent Title="Quiz" ContentTemplate="{DataTemplate views:QuizPage}" Route="QuizPage"/>-->
+    <ShellContent Title="Kana" ContentTemplate="{DataTemplate views:KanaPage}" Route="KanaPage"/>
 
 </Shell>
