@@ -7,10 +7,11 @@
     xmlns:views="clr-namespace:JapaneseLearningApp.Views"
     Title="JapaneseLearningApp">
 
-    <ShellContent Title="Home" ContentTemplate="{DataTemplate views:HomePage}"/>
-    <!--<ShellContent Title="Vocabulary" ContentTemplate="{DataTemplate views:VocabularyPage}" Route="VocabularyPage"/>
+    <ShellContent Title="Hiragana" ContentTemplate="{DataTemplate views:Hiragana.HiraganaMenuPage}" Route="HiraganaMenuPage"/>
+
+    <!--<ShellContent Title="Home" ContentTemplate="{DataTemplate views:HomePage}"/>
+    <ShellContent Title="Vocabulary" ContentTemplate="{DataTemplate views:VocabularyPage}" Route="VocabularyPage"/>
     <ShellContent Title="Kanji" ContentTemplate="{DataTemplate views:KanjiPage}" Route="KanjiPage"/>
     <ShellContent Title="Quiz" ContentTemplate="{DataTemplate views:QuizPage}" Route="QuizPage"/>-->
-    <ShellContent Title="Kana" ContentTemplate="{DataTemplate views:KanaPage}" Route="KanaPage"/>
 
 </Shell>
