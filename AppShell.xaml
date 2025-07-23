@@ -9,6 +9,10 @@
 
     <ShellContent Title="Hiragana" ContentTemplate="{DataTemplate views:Hiragana.HiraganaMenuPage}" Route="HiraganaMenuPage"/>
 
+    <ShellContent Title="Browse" ContentTemplate="{DataTemplate views:Hiragana.HiraganaBrowsePage}" Route="hiragana/browse"/>
+    <ShellContent Title="Practice" ContentTemplate="{DataTemplate views:Hiragana.HiraganaPracticePage}" Route="hiragana/practice"/>
+    <ShellContent Title="Quiz" ContentTemplate="{DataTemplate views:Hiragana.HiraganaQuizPage}" Route="hiragana/quiz"/>
+
     <!--<ShellContent Title="Home" ContentTemplate="{DataTemplate views:HomePage}"/>
     <ShellContent Title="Vocabulary" ContentTemplate="{DataTemplate views:VocabularyPage}" Route="VocabularyPage"/>
     <ShellContent Title="Kanji" ContentTemplate="{DataTemplate views:KanjiPage}" Route="KanjiPage"/>

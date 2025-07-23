@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace JapaneseLearningApp.Views.Hiragana;
 
 public partial class HiraganaMenuPage : ContentPage
@@ -23,9 +25,11 @@ public partial class HiraganaMenuPage : ContentPage
     }
 
 
-	private async void OnBrowseCharactersTapped(object sender, EventArgs e)
+	private async void OnBrowseCharactersTapped(object sender, TappedEventArgs e)
 	{
-		if (BindingContext is ViewModels.Hiragana.HiraganaMenuViewModel viewModel)
+        System.Diagnostics.Debug.WriteLine("Browse Characters Tapped");
+
+        if (BindingContext is ViewModels.Hiragana.HiraganaMenuViewModel viewModel)
 		{
 			await viewModel.NavigateToBrowseCommand.ExecuteAsync(null);
 		}
@@ -35,7 +39,7 @@ public partial class HiraganaMenuPage : ContentPage
         }
     }
 
-	private async void OnPracticeModeTapped(object sender, EventArgs e)
+	private async void OnPracticeModeTapped(object sender, TappedEventArgs e)
 	{
 		if (BindingContext is ViewModels.Hiragana.HiraganaMenuViewModel viewModel)
 		{
@@ -47,7 +51,7 @@ public partial class HiraganaMenuPage : ContentPage
         }
     }
 
-	private async void OnQuizModeTapped(object sender, EventArgs e)
+	private async void OnQuizModeTapped(object sender, TappedEventArgs e)
 	{
 		if (BindingContext is ViewModels.Hiragana.HiraganaMenuViewModel viewModel)
 		{

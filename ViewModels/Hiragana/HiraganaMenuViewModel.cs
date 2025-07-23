@@ -45,7 +45,7 @@ public partial class HiraganaMenuViewModel : ObservableObject
     {
         try
         {
-            await Shell.Current.GoToAsync("//hiragana/browse");
+            await Shell.Current.GoToAsync("hiragana/browse");
         }
         catch (System.Exception ex)
         {
@@ -59,7 +59,7 @@ public partial class HiraganaMenuViewModel : ObservableObject
     {
         try
         {
-            await Shell.Current.GoToAsync("//hiragana/practice");
+            await Shell.Current.GoToAsync("hiragana/practice");
         }
         catch (System.Exception ex)
         {
@@ -73,7 +73,7 @@ public partial class HiraganaMenuViewModel : ObservableObject
     {
         try
         {
-            await Shell.Current.GoToAsync("//hiragana/quiz");
+            await Shell.Current.GoToAsync("hiragana/quiz");
         }
         catch (System.Exception ex)
         {
