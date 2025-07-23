@@ -1,46 +1,103 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace JapaneseLearningApp.ViewModels.Hiragana
+namespace JapaneseLearningApp.ViewModels.Hiragana;
+
+public partial class HiraganaMenuViewModel : ObservableObject
 {
-    public partial class HiraganaMenuViewModel : ObservableObject
+    [ObservableProperty]
+    private int totalCharacters = 46;
+
+    [ObservableProperty]
+    private int learnedCharacters = 12;
+
+    [ObservableProperty]
+    private int currentStreak = 7;
+
+    [ObservableProperty]
+    private double accuracyRate = 85.0;
+
+    [ObservableProperty]
+    private bool isLoading;
+
+    [ObservableProperty]
+    private string progressPercentage = "26%";
+
+    [ObservableProperty]
+    private string progressText = "12/46 Characters Mastered";
+
+    public HiraganaMenuViewModel()
     {
-        [ObservableProperty]
-        private int totalCharacters = 46;
+        LoadStatistics();
+    }
 
-        [ObservableProperty]
-        private int learnedCharacters;
+    private void LoadStatistics()
+    {
+        // Calculate progress percentage
+        var percentage = (double)LearnedCharacters / TotalCharacters * 100;
+        ProgressPercentage = $"{percentage:F0}%";
+        ProgressText = $"{LearnedCharacters}/{TotalCharacters} Characters Mastered";
+    }
 
-        [ObservableProperty]
-        private int currentStreak;
-
-        [ObservableProperty]
-        private double accuracyRate;
-
-        [ObservableProperty]
-        private bool isLoading;
-
-        [RelayCommand]
-        private async Task NavigateToBrowseAsync()
+    [RelayCommand]
+    private async Task NavigateToBrowseAsync()
+    {
+        try
         {
-
+            await Shell.Current.GoToAsync("//hiragana/browse");
         }
-
-        [RelayCommand]
-        private async Task NavigateToQuizAsync()
+        catch (System.Exception ex)
         {
-            // Logic to navigate to the quiz page
+            // Handle navigation error
+            System.Diagnostics.Debug.WriteLine($"Navigation error: {ex.Message}");
         }
+    }
 
-        [RelayCommand]
-        private async Task NavigateToPracticeAsync()
+    [RelayCommand]
+    private async Task NavigateToPracticeAsync()
+    {
+        try
         {
-            // Logic to navigate to the practice page
+            await Shell.Current.GoToAsync("//hiragana/practice");
+        }
+        catch (System.Exception ex)
+        {
+            // Handle navigation error
+            System.Diagnostics.Debug.WriteLine($"Navigation error: {ex.Message}");
+        }
+    }
+
+    [RelayCommand]
+    private async Task NavigateToQuizAsync()
+    {
+        try
+        {
+            await Shell.Current.GoToAsync("//hiragana/quiz");
+        }
+        catch (System.Exception ex)
+        {
+            // Handle navigation error
+            System.Diagnostics.Debug.WriteLine($"Navigation error: {ex.Message}");
+        }
+    }
+
+    [RelayCommand]
+    private async Task RefreshStatisticsAsync()
+    {
+        IsLoading = true;
+
+        try
+        {
+            // Simulate loading delay
+            await Task.Delay(1000);
+
+            // TODO: Load real statistics from service
+            LoadStatistics();
+        }
+        finally
+        {
+            IsLoading = false;
         }
     }
 }
