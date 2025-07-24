@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="JapaneseLearningApp.Views.Popups.CharacterDetailPopup"
+               Color="Transparent">
+
+    <toolkit:Popup.Resources>
+        <ResourceDictionary>
+            
+            <!-- Popup Container Style -->
+            <Style x:Key="PopupContainerStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="Padding" Value="24" />
+                <Setter Property="Margin" Value="16" />
+                <Setter Property="MaximumWidthRequest" Value="400" />
+                <Setter Property="MinimumHeightRequest" Value="500" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Shadow">
+                    <Shadow Brush="Black" Opacity="0.3" Radius="20" Offset="0,10" />
+                </Setter>
+            </Style>
+
+            <!-- Character Display Style -->
+            <Style x:Key="CharacterDisplayStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="80" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#2C3E50" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,8" />
+            </Style>
+
+            <!-- Romaji Display Style -->
+            <Style x:Key="RomajiDisplayStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#7F8C8D" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,4" />
+            </Style>
+
+            <!-- Section Header Style -->
+            <Style x:Key="SectionHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#2C3E50" />
+                <Setter Property="Margin" Value="0,0,0,8" />
+            </Style>
+
+            <!-- Info Card Style -->
+            <Style x:Key="InfoCardStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="#F8F9FA" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="Padding" Value="16,12" />
+                <Setter Property="Margin" Value="0,4" />
+            </Style>
+
+            <!-- Progress Badge Style -->
+            <Style x:Key="ProgressBadgeStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="Padding" Value="12,6" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,8" />
+            </Style>
+
+            <!-- Progress Badge Label Style -->
+            <Style x:Key="ProgressBadgeLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <!-- Action Button Style -->
+            <Style x:Key="ActionButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#3498DB" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="16,12" />
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="MinimumHeightRequest" Value="44" />
+            </Style>
+
+            <!-- Secondary Button Style -->
+            <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#ECF0F1" />
+                <Setter Property="TextColor" Value="#2C3E50" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="16,12" />
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="MinimumHeightRequest" Value="44" />
+            </Style>
+
+            <!-- Close Button Style -->
+            <Style x:Key="CloseButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#95A5A6" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="WidthRequest" Value="32" />
+                <Setter Property="HeightRequest" Value="32" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Start" />
+            </Style>
+
+        </ResourceDictionary>
+    </toolkit:Popup.Resources>
+
+    <Border Style="{StaticResource PopupContainerStyle}">
+        <ScrollView>
+            <StackLayout Spacing="16">
+
+                <!-- Header with Close Button -->
+                <Grid>
+                    <Label Text="Character Details"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#2C3E50"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                    <Button Text="×"
+                            Style="{StaticResource CloseButtonStyle}"
+                            Clicked="OnCloseButtonClicked" />
+                </Grid>
+
+                <!-- Character Display Section -->
+                <StackLayout HorizontalOptions="Center" Spacing="8">
+                    <Label Text="{Binding Character.Character}"
+                           Style="{StaticResource CharacterDisplayStyle}" />
+                    <Label Text="{Binding Character.Romanji}"
+                           Style="{StaticResource RomajiDisplayStyle}" />
+
+                    <!-- Progress Badge -->
+                    <Border Style="{StaticResource ProgressBadgeStyle}"
+                            BackgroundColor="{Binding Character.ProgressColor}">
+                        <StackLayout Orientation="Horizontal" Spacing="4">
+                            <Label Text="{Binding Character.ProgressIcon}"
+                                   FontSize="12"
+                                   TextColor="White"
+                                   VerticalOptions="Center" />
+                            <Label Text="{Binding Character.Progress}"
+                                   Style="{StaticResource ProgressBadgeLabelStyle}" />
+                        </StackLayout>
+                    </Border>
+                </StackLayout>
+
+                <!-- Character Information -->
+                <StackLayout Spacing="12">
+                    <Label Text="Character Information"
+                           Style="{StaticResource SectionHeaderStyle}" />
+
+                    <Border Style="{StaticResource InfoCardStyle}">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*" RowSpacing="8">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Group:" FontAttributes="Bold" TextColor="#34495E" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Character.Group}" TextColor="#7F8C8D" />
+                            
+                            <Label Grid.Row="1" Grid.Column="0" Text="Row:" FontAttributes="Bold" TextColor="#34495E" />
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Character.Row}" TextColor="#7F8C8D" />
+                            
+                            <Label Grid.Row="2" Grid.Column="0" Text="Stroke Count:" FontAttributes="Bold" TextColor="#34495E" />
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Character.StrokeCount}" TextColor="#7F8C8D" />
+                            
+                            <Label Grid.Row="3" Grid.Column="0" Text="Accuracy:" FontAttributes="Bold" TextColor="#34495E" />
+                            <Label Grid.Row="3" Grid.Column="1" Text="{Binding Character.AccuracyRate, StringFormat='{0:F1}%'}" TextColor="#7F8C8D" />
+                        </Grid>
+                    </Border>
+                </StackLayout>
+
+                <!-- Example Words Section -->
+                <StackLayout Spacing="8" IsVisible="{Binding Character.Examples.Count, Converter={StaticResource IntToBoolConverter}}">
+                    <Label Text="Example Words"
+                           Style="{StaticResource SectionHeaderStyle}" />
+                    
+                    <CollectionView ItemsSource="{Binding Character.Examples}"
+                                    HeightRequest="120"
+                                    BackgroundColor="Transparent">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource InfoCardStyle}" Margin="0,2">
+                                    <Label Text="{Binding .}"
+                                           FontSize="14"
+                                           TextColor="#2C3E50"
+                                           VerticalOptions="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+
+                <!-- Mnemonic Hint Section -->
+                <StackLayout Spacing="8">
+                    <Label Text="Memory Tip"
+                           Style="{StaticResource SectionHeaderStyle}" />
+                    <Border BackgroundColor="#FFF9E6"
+                            StrokeShape="RoundRectangle 8"
+                            StrokeThickness="0"
+                            Padding="16">
+                        <Label Text="{Binding Character.Character, StringFormat='The character {0} can be remembered by thinking of its shape and sound. Practice writing it to build muscle memory!'}"
+                               FontSize="14"
+                               TextColor="#8E6A00"
+                               FontAttributes="Italic" />
+                    </Border>
+                </StackLayout>
+
+                <!-- Action Buttons -->
+                <StackLayout Spacing="12">
+                    <Label Text="Practice Tools"
+                           Style="{StaticResource SectionHeaderStyle}" />
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <Button Grid.Column="0"
+                                Text="🔊 Play Audio"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Clicked="OnPlayPronunciationClicked" />
+                        <Button Grid.Column="1"
+                                Text="✏️ Stroke Order"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Clicked="OnViewStrokeOrderClicked" />
+                    </Grid>
+                </StackLayout>
+
+                <!-- Mark as Learned Button -->
+                <Button Text="{Binding Character.Progress, Converter={StaticResource ProgressToButtonTextConverter}}"
+                        Style="{StaticResource ActionButtonStyle}"
+                        BackgroundColor="{Binding Character.ProgressColor}"
+                        Clicked="OnMarkAsLearnedClicked"
+                        Margin="0,8,0,0" />
+
+            </StackLayout>
+        </ScrollView>
+    </Border>
+
+</toolkit:Popup>

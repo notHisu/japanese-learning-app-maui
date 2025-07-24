@@ -1,12 +1,464 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:JapaneseLearningApp.ViewModels.Hiragana"
              x:Class="JapaneseLearningApp.Views.Hiragana.HiraganaBrowsePage"
-             Title="HiraganaBrowsePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Hiragana Browse Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Browse Hiragana"
+             BackgroundColor="#F8F9FA">
+
+    <ContentPage.BindingContext>
+        <viewmodels:HiraganaBrowseViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <!-- Filter Chip Styles -->
+            <Style x:Key="FilterChipStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Stroke" Value="#E0E0E0" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 20" />
+                <Setter Property="StrokeThickness" Value="2" />
+                <Setter Property="Padding" Value="16,8" />
+                <Setter Property="Margin" Value="4,0" />
+                <Setter Property="MinimumWidthRequest" Value="60" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#3498DB" />
+                                    <Setter Property="Stroke" Value="#3498DB" />
+                                    <Setter Property="Scale" Value="0.95" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style x:Key="FilterChipLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#666666" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <!-- Enhanced Character Card Styles -->
+            <Style x:Key="CharacterCardStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Stroke" Value="#E8E8E8" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Padding" Value="20,16" />
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="MinimumHeightRequest" Value="140" />
+                <Setter Property="Shadow">
+                    <Shadow Brush="#E0E0E0" Opacity="0.3" Radius="8" Offset="0,2" />
+                </Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1.0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.97" />
+                                    <Setter Property="BackgroundColor" Value="#F8F9FA" />
+                                    <Setter Property="Stroke" Value="#3498DB" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style x:Key="HiraganaCharacterStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="52" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#2C3E50" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+            </Style>
+
+            <Style x:Key="RomajiStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#7F8C8D" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,4,0,0" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+            </Style>
+
+            <Style x:Key="StrokeCountStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="TextColor" Value="#95A5A6" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,8,0,0" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+            </Style>
+
+            <Style x:Key="ProgressBadgeStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="#27AE60" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+                <Setter Property="Padding" Value="8,4" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Margin" Value="0,-12,-12,0" />
+                <Setter Property="Shadow">
+                    <Shadow Brush="#27AE60" Opacity="0.4" Radius="4" Offset="0,2" />
+                </Setter>
+            </Style>
+
+            <Style x:Key="ProgressBadgeLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <!-- Progress Status Styles -->
+            <Style x:Key="NotStudiedCardStyle" TargetType="Border" BasedOn="{StaticResource CharacterCardStyle}">
+                <Setter Property="BackgroundColor" Value="#FAFAFA" />
+                <Setter Property="Stroke" Value="#E8E8E8" />
+            </Style>
+
+            <Style x:Key="InProgressCardStyle" TargetType="Border" BasedOn="{StaticResource CharacterCardStyle}">
+                <Setter Property="BackgroundColor" Value="#F0F8FF" />
+                <Setter Property="Stroke" Value="#3498DB" />
+            </Style>
+
+            <Style x:Key="MasteredCardStyle" TargetType="Border" BasedOn="{StaticResource CharacterCardStyle}">
+                <Setter Property="BackgroundColor" Value="#F0FFF4" />
+                <Setter Property="Stroke" Value="#27AE60" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="0">
+
+        <!-- Filter Section -->
+        <Border Grid.Row="0"
+                BackgroundColor="White"
+                StrokeShape="Rectangle"
+                StrokeThickness="0"
+                Padding="0,16,0,16">
+            <ScrollView Orientation="Horizontal"
+                        HorizontalScrollBarVisibility="Never">
+                <HorizontalStackLayout Spacing="0"
+                                       Padding="16,0">
+
+                    <!-- All Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="AllFilterChip">
+                        <Label Text="All"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="All" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- あ-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="ARowFilterChip">
+                        <Label Text="あ"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="a-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- か-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="KaRowFilterChip">
+                        <Label Text="か"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="ka-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- さ-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="SaRowFilterChip">
+                        <Label Text="さ"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="sa-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- た-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="TaRowFilterChip">
+                        <Label Text="た"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="ta-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- な-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="NaRowFilterChip">
+                        <Label Text="な"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="na-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- は-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="HaRowFilterChip">
+                        <Label Text="は"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="ha-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- ま-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="MaRowFilterChip">
+                        <Label Text="ま"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="ma-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- や-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="YaRowFilterChip">
+                        <Label Text="や"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="ya-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- ら-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="RaRowFilterChip">
+                        <Label Text="ら"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="ra-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- わ-row Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="WaRowFilterChip">
+                        <Label Text="わ"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="wa-row" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- Dakuten/Handakuten Filter -->
+                    <Border Style="{StaticResource FilterChipStyle}"
+                            x:Name="DakutenFilterChip">
+                        <Label Text="゛゜"
+                               Style="{StaticResource FilterChipLabelStyle}" />
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FilterCommand}"
+                                                  CommandParameter="dakuten" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                </HorizontalStackLayout>
+            </ScrollView>
+        </Border>
+
+        <!-- Characters Grid -->
+        <ScrollView Grid.Row="1"
+                    Padding="16,16,16,32">
+            <CollectionView ItemsSource="{Binding FilteredCharacters}"
+                            BackgroundColor="Transparent">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout x:Name="CharactersGridLayout"
+                                     Orientation="Vertical"
+                                     Span="{OnIdiom Phone=3, Tablet=4, Desktop=5}"
+                                     HorizontalItemSpacing="12"
+                                     VerticalItemSpacing="12" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <!-- Character Card with Dynamic Styling Based on Progress -->
+                            <Border>
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Style.Triggers>
+                                            <DataTrigger TargetType="Border" Binding="{Binding Progress}" Value="NotStudied">
+                                                <Setter Property="Style" Value="{StaticResource NotStudiedCardStyle}" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Border" Binding="{Binding Progress}" Value="InProgress">
+                                                <Setter Property="Style" Value="{StaticResource InProgressCardStyle}" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Border" Binding="{Binding Progress}" Value="Mastered">
+                                                <Setter Property="Style" Value="{StaticResource MasteredCardStyle}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                        <!-- Default style -->
+                                        <Setter Property="BackgroundColor" Value="White" />
+                                        <Setter Property="Stroke" Value="#E8E8E8" />
+                                        <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+                                        <Setter Property="StrokeThickness" Value="1" />
+                                        <Setter Property="Padding" Value="20,16" />
+                                        <Setter Property="Margin" Value="4" />
+                                        <Setter Property="MinimumHeightRequest" Value="140" />
+                                        <Setter Property="Shadow">
+                                            <Shadow Brush="#E0E0E0" Opacity="0.3" Radius="8" Offset="0,2" />
+                                        </Setter>
+                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                            <VisualStateGroupList>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="Scale" Value="1.0" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Pressed">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="Scale" Value="0.97" />
+                                                            <Setter Property="BackgroundColor" Value="#F8F9FA" />
+                                                            <Setter Property="Stroke" Value="#3498DB" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateGroupList>
+                                        </Setter>
+                                    </Style>
+                                </Border.Style>
+
+                                <Grid RowDefinitions="*,Auto,Auto">
+
+                                    <!-- Character Display -->
+                                    <StackLayout Grid.Row="0"
+                                                 VerticalOptions="Center"
+                                                 HorizontalOptions="Center"
+                                                 Spacing="2">
+                                        <Label Text="{Binding Character}"
+                                               Style="{StaticResource HiraganaCharacterStyle}" />
+                                        <Label Text="{Binding Romanji}"
+                                               Style="{StaticResource RomajiStyle}" />
+                                    </StackLayout>
+
+                                    <!-- Progress Indicator Line -->
+                                    <BoxView Grid.Row="1"
+                                             HeightRequest="3"
+                                             BackgroundColor="{Binding ProgressColor}"
+                                             HorizontalOptions="FillAndExpand"
+                                             Margin="0,8,0,4"
+                                             CornerRadius="1.5" />
+
+                                    <!-- Stroke Count Indicator -->
+                                    <Label Grid.Row="2"
+                                           Text="{Binding StrokeCount, StringFormat='{0} strokes'}"
+                                           Style="{StaticResource StrokeCountStyle}" />
+                                </Grid>
+
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HiraganaBrowseViewModel}}, Path=CharacterSelectedCommand}"
+                                                          CommandParameter="{Binding}" />
+                                </Border.GestureRecognizers>
+                            </Border>
+
+                            <!-- Progress Badge (shown when character is mastered) -->
+                            <Border Style="{StaticResource ProgressBadgeStyle}"
+                                    IsVisible="{Binding IsMastered}"
+                                    BackgroundColor="{Binding ProgressColor}">
+                                <Label Text="{Binding ProgressIcon}"
+                                       Style="{StaticResource ProgressBadgeLabelStyle}" />
+                            </Border>
+
+                            <!-- Progress Status Icon (bottom left for in-progress) -->
+                            <Border IsVisible="{Binding IsInProgress}"
+                                    BackgroundColor="#3498DB"
+                                    StrokeShape="RoundRectangle 8"
+                                    Padding="6,3"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="End"
+                                    Margin="8,0,0,8">
+                                <Label Text="⚡"
+                                       FontSize="10"
+                                       TextColor="White"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <!-- Empty State -->
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="20"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+                        <Label Text="📚"
+                               FontSize="64"
+                               HorizontalOptions="Center" />
+                        <Label Text="No characters found"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#7F8C8D"
+                               HorizontalOptions="Center" />
+                        <Label Text="Try selecting a different filter"
+                               FontSize="14"
+                               TextColor="#95A5A6"
+                               HorizontalOptions="Center"
+                               Margin="0,4,0,0" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+            </CollectionView>
+        </ScrollView>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator Grid.Row="1"
+                           IsVisible="{Binding IsLoading}"
+                           IsRunning="{Binding IsLoading}"
+                           Color="#3498DB"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+
+    </Grid>
+
 </ContentPage>

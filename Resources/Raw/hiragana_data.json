@@ -1,0 +1,643 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "character": "あ",
+      "romaji": "a",
+      "group": "basic",
+      "row": "a-row",
+      "strokeCount": 3,
+      "examples": [ "あい (ai) - love", "あさ (asa) - morning" ]
+    },
+    {
+      "id": 2,
+      "character": "い",
+      "romaji": "i",
+      "group": "basic",
+      "row": "a-row",
+      "strokeCount": 2,
+      "examples": [ "いぬ (inu) - dog", "いえ (ie) - house" ]
+    },
+    {
+      "id": 3,
+      "character": "う",
+      "romaji": "u",
+      "group": "basic",
+      "row": "a-row",
+      "strokeCount": 2,
+      "examples": [ "うみ (umi) - sea", "うた (uta) - song" ]
+    },
+    {
+      "id": 4,
+      "character": "え",
+      "romaji": "e",
+      "group": "basic",
+      "row": "a-row",
+      "strokeCount": 2,
+      "examples": [ "えき (eki) - station", "えんぴつ (enpitsu) - pencil" ]
+    },
+    {
+      "id": 5,
+      "character": "お",
+      "romaji": "o",
+      "group": "basic",
+      "row": "a-row",
+      "strokeCount": 3,
+      "examples": [ "おちゃ (ocha) - tea", "おとこ (otoko) - man" ]
+    },
+    {
+      "id": 6,
+      "character": "か",
+      "romaji": "ka",
+      "group": "basic",
+      "row": "ka-row",
+      "strokeCount": 3,
+      "examples": [ "かぞく (kazoku) - family", "かみ (kami) - paper" ]
+    },
+    {
+      "id": 7,
+      "character": "き",
+      "romaji": "ki",
+      "group": "basic",
+      "row": "ka-row",
+      "strokeCount": 4,
+      "examples": [ "きのう (kinou) - yesterday", "きれい (kirei) - beautiful" ]
+    },
+    {
+      "id": 8,
+      "character": "く",
+      "romaji": "ku",
+      "group": "basic",
+      "row": "ka-row",
+      "strokeCount": 2,
+      "examples": [ "くるま (kuruma) - car", "くも (kumo) - cloud" ]
+    },
+    {
+      "id": 9,
+      "character": "け",
+      "romaji": "ke",
+      "group": "basic",
+      "row": "ka-row",
+      "strokeCount": 3,
+      "examples": [ "けさ (kesa) - this morning", "けいたい (keitai) - mobile phone" ]
+    },
+    {
+      "id": 10,
+      "character": "こ",
+      "romaji": "ko",
+      "group": "basic",
+      "row": "ka-row",
+      "strokeCount": 2,
+      "examples": [ "こども (kodomo) - child", "こんにちは (konnichiwa) - hello" ]
+    },
+    {
+      "id": 11,
+      "character": "さ",
+      "romaji": "sa",
+      "group": "basic",
+      "row": "sa-row",
+      "strokeCount": 3,
+      "examples": [ "さかな (sakana) - fish", "さくら (sakura) - cherry blossom" ]
+    },
+    {
+      "id": 12,
+      "character": "し",
+      "romaji": "shi",
+      "group": "basic",
+      "row": "sa-row",
+      "strokeCount": 1,
+      "examples": [ "しごと (shigoto) - work", "しんぶん (shinbun) - newspaper" ]
+    },
+    {
+      "id": 13,
+      "character": "す",
+      "romaji": "su",
+      "group": "basic",
+      "row": "sa-row",
+      "strokeCount": 2,
+      "examples": [ "すし (sushi) - sushi", "すずき (suzuki) - sea bass" ]
+    },
+    {
+      "id": 14,
+      "character": "せ",
+      "romaji": "se",
+      "group": "basic",
+      "row": "sa-row",
+      "strokeCount": 3,
+      "examples": [ "せんせい (sensei) - teacher", "せかい (sekai) - world" ]
+    },
+    {
+      "id": 15,
+      "character": "そ",
+      "romaji": "so",
+      "group": "basic",
+      "row": "sa-row",
+      "strokeCount": 1,
+      "examples": [ "そら (sora) - sky", "そして (soshite) - and then" ]
+    },
+    {
+      "id": 16,
+      "character": "た",
+      "romaji": "ta",
+      "group": "basic",
+      "row": "ta-row",
+      "strokeCount": 4,
+      "examples": [ "たべる (taberu) - to eat", "たまご (tamago) - egg" ]
+    },
+    {
+      "id": 17,
+      "character": "ち",
+      "romaji": "chi",
+      "group": "basic",
+      "row": "ta-row",
+      "strokeCount": 3,
+      "examples": [ "ちち (chichi) - father", "ちいさい (chiisai) - small" ]
+    },
+    {
+      "id": 18,
+      "character": "つ",
+      "romaji": "tsu",
+      "group": "basic",
+      "row": "ta-row",
+      "strokeCount": 1,
+      "examples": [ "つき (tsuki) - moon", "つくえ (tsukue) - desk" ]
+    },
+    {
+      "id": 19,
+      "character": "て",
+      "romaji": "te",
+      "group": "basic",
+      "row": "ta-row",
+      "strokeCount": 1,
+      "examples": [ "てがみ (tegami) - letter", "てんき (tenki) - weather" ]
+    },
+    {
+      "id": 20,
+      "character": "と",
+      "romaji": "to",
+      "group": "basic",
+      "row": "ta-row",
+      "strokeCount": 2,
+      "examples": [ "ともだち (tomodachi) - friend", "とり (tori) - bird" ]
+    },
+    {
+      "id": 21,
+      "character": "な",
+      "romaji": "na",
+      "group": "basic",
+      "row": "na-row",
+      "strokeCount": 4,
+      "examples": [ "なまえ (namae) - name", "なつ (natsu) - summer" ]
+    },
+    {
+      "id": 22,
+      "character": "に",
+      "romaji": "ni",
+      "group": "basic",
+      "row": "na-row",
+      "strokeCount": 3,
+      "examples": [ "にほん (nihon) - Japan", "にく (niku) - meat" ]
+    },
+    {
+      "id": 23,
+      "character": "ぬ",
+      "romaji": "nu",
+      "group": "basic",
+      "row": "na-row",
+      "strokeCount": 2,
+      "examples": [ "ぬの (nuno) - cloth", "ぬるい (nurui) - lukewarm" ]
+    },
+    {
+      "id": 24,
+      "character": "ね",
+      "romaji": "ne",
+      "group": "basic",
+      "row": "na-row",
+      "strokeCount": 4,
+      "examples": [ "ねこ (neko) - cat", "ねる (neru) - to sleep" ]
+    },
+    {
+      "id": 25,
+      "character": "の",
+      "romaji": "no",
+      "group": "basic",
+      "row": "na-row",
+      "strokeCount": 1,
+      "examples": [ "のみもの (nomimono) - drink", "のはら (nohara) - field" ]
+    },
+    {
+      "id": 26,
+      "character": "は",
+      "romaji": "ha",
+      "group": "basic",
+      "row": "ha-row",
+      "strokeCount": 3,
+      "examples": [ "はな (hana) - flower", "はし (hashi) - bridge" ]
+    },
+    {
+      "id": 27,
+      "character": "ひ",
+      "romaji": "hi",
+      "group": "basic",
+      "row": "ha-row",
+      "strokeCount": 1,
+      "examples": [ "ひと (hito) - person", "ひる (hiru) - noon" ]
+    },
+    {
+      "id": 28,
+      "character": "ふ",
+      "romaji": "fu",
+      "group": "basic",
+      "row": "ha-row",
+      "strokeCount": 1,
+      "examples": [ "ふゆ (fuyu) - winter", "ふね (fune) - ship" ]
+    },
+    {
+      "id": 29,
+      "character": "へ",
+      "romaji": "he",
+      "group": "basic",
+      "row": "ha-row",
+      "strokeCount": 1,
+      "examples": [ "へや (heya) - room", "へび (hebi) - snake" ]
+    },
+    {
+      "id": 30,
+      "character": "ほ",
+      "romaji": "ho",
+      "group": "basic",
+      "row": "ha-row",
+      "strokeCount": 4,
+      "examples": [ "ほん (hon) - book", "ほし (hoshi) - star" ]
+    },
+    {
+      "id": 31,
+      "character": "ま",
+      "romaji": "ma",
+      "group": "basic",
+      "row": "ma-row",
+      "strokeCount": 3,
+      "examples": [ "まち (machi) - town", "まど (mado) - window" ]
+    },
+    {
+      "id": 32,
+      "character": "み",
+      "romaji": "mi",
+      "group": "basic",
+      "row": "ma-row",
+      "strokeCount": 3,
+      "examples": [ "みず (mizu) - water", "みち (michi) - road" ]
+    },
+    {
+      "id": 33,
+      "character": "む",
+      "romaji": "mu",
+      "group": "basic",
+      "row": "ma-row",
+      "strokeCount": 3,
+      "examples": [ "むし (mushi) - insect", "むずかしい (muzukashii) - difficult" ]
+    },
+    {
+      "id": 34,
+      "character": "め",
+      "romaji": "me",
+      "group": "basic",
+      "row": "ma-row",
+      "strokeCount": 2,
+      "examples": [ "め (me) - eye", "めがね (megane) - glasses" ]
+    },
+    {
+      "id": 35,
+      "character": "も",
+      "romaji": "mo",
+      "group": "basic",
+      "row": "ma-row",
+      "strokeCount": 3,
+      "examples": [ "もの (mono) - thing", "もり (mori) - forest" ]
+    },
+    {
+      "id": 36,
+      "character": "や",
+      "romaji": "ya",
+      "group": "basic",
+      "row": "ya-row",
+      "strokeCount": 3,
+      "examples": [ "やま (yama) - mountain", "やすい (yasui) - cheap" ]
+    },
+    {
+      "id": 37,
+      "character": "ゆ",
+      "romaji": "yu",
+      "group": "basic",
+      "row": "ya-row",
+      "strokeCount": 2,
+      "examples": [ "ゆき (yuki) - snow", "ゆめ (yume) - dream" ]
+    },
+    {
+      "id": 38,
+      "character": "よ",
+      "romaji": "yo",
+      "group": "basic",
+      "row": "ya-row",
+      "strokeCount": 2,
+      "examples": [ "よる (yoru) - night", "よむ (yomu) - to read" ]
+    },
+    {
+      "id": 39,
+      "character": "ら",
+      "romaji": "ra",
+      "group": "basic",
+      "row": "ra-row",
+      "strokeCount": 2,
+      "examples": [ "らいねん (rainen) - next year", "らじお (rajio) - radio" ]
+    },
+    {
+      "id": 40,
+      "character": "り",
+      "romaji": "ri",
+      "group": "basic",
+      "row": "ra-row",
+      "strokeCount": 2,
+      "examples": [ "りんご (ringo) - apple", "りょこう (ryokou) - travel" ]
+    },
+    {
+      "id": 41,
+      "character": "る",
+      "romaji": "ru",
+      "group": "basic",
+      "row": "ra-row",
+      "strokeCount": 1,
+      "examples": [ "るす (rusu) - absent", "るいじ (ruiji) - similar" ]
+    },
+    {
+      "id": 42,
+      "character": "れ",
+      "romaji": "re",
+      "group": "basic",
+      "row": "ra-row",
+      "strokeCount": 1,
+      "examples": [ "れいぞうこ (reizouko) - refrigerator", "れんしゅう (renshuu) - practice" ]
+    },
+    {
+      "id": 43,
+      "character": "ろ",
+      "romaji": "ro",
+      "group": "basic",
+      "row": "ra-row",
+      "strokeCount": 1,
+      "examples": [ "ろく (roku) - six", "ろうそく (rousoku) - candle" ]
+    },
+    {
+      "id": 44,
+      "character": "わ",
+      "romaji": "wa",
+      "group": "basic",
+      "row": "wa-row",
+      "strokeCount": 2,
+      "examples": [ "わたし (watashi) - I/me", "わかる (wakaru) - to understand" ]
+    },
+    {
+      "id": 45,
+      "character": "を",
+      "romaji": "wo",
+      "group": "basic",
+      "row": "wa-row",
+      "strokeCount": 3,
+      "examples": [ "本を読む (hon wo yomu) - to read a book", "水を飲む (mizu wo nomu) - to drink water" ]
+    },
+    {
+      "id": 46,
+      "character": "ん",
+      "romaji": "n",
+      "group": "basic",
+      "row": "wa-row",
+      "strokeCount": 1,
+      "examples": [ "ほん (hon) - book", "にほん (nihon) - Japan" ]
+    },
+    {
+      "id": 47,
+      "character": "が",
+      "romaji": "ga",
+      "group": "dakuten",
+      "row": "ka-row",
+      "strokeCount": 4,
+      "examples": [ "がっこう (gakkou) - school", "がいこく (gaikoku) - foreign country" ]
+    },
+    {
+      "id": 48,
+      "character": "ぎ",
+      "romaji": "gi",
+      "group": "dakuten",
+      "row": "ka-row",
+      "strokeCount": 5,
+      "examples": [ "ぎんこう (ginkou) - bank", "ぎゅうにゅう (gyuunyuu) - milk" ]
+    },
+    {
+      "id": 49,
+      "character": "ぐ",
+      "romaji": "gu",
+      "group": "dakuten",
+      "row": "ka-row",
+      "strokeCount": 3,
+      "examples": [ "ぐあい (guai) - condition", "ぐんたい (guntai) - army" ]
+    },
+    {
+      "id": 50,
+      "character": "げ",
+      "romaji": "ge",
+      "group": "dakuten",
+      "row": "ka-row",
+      "strokeCount": 4,
+      "examples": [ "げつようび (getsuyoubi) - Monday", "げんき (genki) - healthy" ]
+    },
+    {
+      "id": 51,
+      "character": "ご",
+      "romaji": "go",
+      "group": "dakuten",
+      "row": "ka-row",
+      "strokeCount": 3,
+      "examples": [ "ごはん (gohan) - rice/meal", "ごご (gogo) - afternoon" ]
+    },
+    {
+      "id": 52,
+      "character": "ざ",
+      "romaji": "za",
+      "group": "dakuten",
+      "row": "sa-row",
+      "strokeCount": 4,
+      "examples": [ "ざっし (zasshi) - magazine", "ざんねん (zannen) - unfortunate" ]
+    },
+    {
+      "id": 53,
+      "character": "じ",
+      "romaji": "ji",
+      "group": "dakuten",
+      "row": "sa-row",
+      "strokeCount": 2,
+      "examples": [ "じかん (jikan) - time", "じしょ (jisho) - dictionary" ]
+    },
+    {
+      "id": 54,
+      "character": "ず",
+      "romaji": "zu",
+      "group": "dakuten",
+      "row": "sa-row",
+      "strokeCount": 3,
+      "examples": [ "ずつう (zutsuu) - headache", "ずっと (zutto) - all the time" ]
+    },
+    {
+      "id": 55,
+      "character": "ぜ",
+      "romaji": "ze",
+      "group": "dakuten",
+      "row": "sa-row",
+      "strokeCount": 4,
+      "examples": [ "ぜんぶ (zenbu) - all", "ぜったい (zettai) - absolutely" ]
+    },
+    {
+      "id": 56,
+      "character": "ぞ",
+      "romaji": "zo",
+      "group": "dakuten",
+      "row": "sa-row",
+      "strokeCount": 2,
+      "examples": [ "ぞう (zou) - elephant", "ぞうきん (zoukin) - rag" ]
+    },
+    {
+      "id": 57,
+      "character": "だ",
+      "romaji": "da",
+      "group": "dakuten",
+      "row": "ta-row",
+      "strokeCount": 5,
+      "examples": [ "だいがく (daigaku) - university", "だれ (dare) - who" ]
+    },
+    {
+      "id": 58,
+      "character": "ぢ",
+      "romaji": "ji",
+      "group": "dakuten",
+      "row": "ta-row",
+      "strokeCount": 4,
+      "examples": [ "ちぢむ (chijimu) - to shrink", "はなぢ (hanaji) - nosebleed" ]
+    },
+    {
+      "id": 59,
+      "character": "づ",
+      "romaji": "zu",
+      "group": "dakuten",
+      "row": "ta-row",
+      "strokeCount": 2,
+      "examples": [ "つづく (tsuzuku) - to continue", "みづ (mizu) - water (old spelling)" ]
+    },
+    {
+      "id": 60,
+      "character": "で",
+      "romaji": "de",
+      "group": "dakuten",
+      "row": "ta-row",
+      "strokeCount": 2,
+      "examples": [ "でんしゃ (densha) - train", "でる (deru) - to exit" ]
+    },
+    {
+      "id": 61,
+      "character": "ど",
+      "romaji": "do",
+      "group": "dakuten",
+      "row": "ta-row",
+      "strokeCount": 3,
+      "examples": [ "どこ (doko) - where", "どようび (doyoubi) - Saturday" ]
+    },
+    {
+      "id": 62,
+      "character": "ば",
+      "romaji": "ba",
+      "group": "dakuten",
+      "row": "ha-row",
+      "strokeCount": 4,
+      "examples": [ "ばん (ban) - evening", "ばしょ (basho) - place" ]
+    },
+    {
+      "id": 63,
+      "character": "び",
+      "romaji": "bi",
+      "group": "dakuten",
+      "row": "ha-row",
+      "strokeCount": 2,
+      "examples": [ "びょういん (byouin) - hospital", "びじん (bijin) - beautiful person" ]
+    },
+    {
+      "id": 64,
+      "character": "ぶ",
+      "romaji": "bu",
+      "group": "dakuten",
+      "row": "ha-row",
+      "strokeCount": 2,
+      "examples": [ "ぶた (buta) - pig", "ぶんか (bunka) - culture" ]
+    },
+    {
+      "id": 65,
+      "character": "べ",
+      "romaji": "be",
+      "group": "dakuten",
+      "row": "ha-row",
+      "strokeCount": 2,
+      "examples": [ "べんきょう (benkyou) - study", "べつ (betsu) - separate" ]
+    },
+    {
+      "id": 66,
+      "character": "ぼ",
+      "romaji": "bo",
+      "group": "dakuten",
+      "row": "ha-row",
+      "strokeCount": 5,
+      "examples": [ "ぼく (boku) - I (informal, male)", "ぼうし (boushi) - hat" ]
+    },
+    {
+      "id": 67,
+      "character": "ぱ",
+      "romaji": "pa",
+      "group": "handakuten",
+      "row": "ha-row",
+      "strokeCount": 4,
+      "examples": [ "ぱん (pan) - bread", "ぱーてぃー (paatii) - party" ]
+    },
+    {
+      "id": 68,
+      "character": "ぴ",
+      "romaji": "pi",
+      "group": "handakuten",
+      "row": "ha-row",
+      "strokeCount": 2,
+      "examples": [ "ぴあの (piano) - piano", "ぴんく (pinku) - pink" ]
+    },
+    {
+      "id": 69,
+      "character": "ぷ",
+      "romaji": "pu",
+      "group": "handakuten",
+      "row": "ha-row",
+      "strokeCount": 2,
+      "examples": [ "ぷーる (puuru) - pool", "ぷれぜんと (purezento) - present" ]
+    },
+    {
+      "id": 70,
+      "character": "ぺ",
+      "romaji": "pe",
+      "group": "handakuten",
+      "row": "ha-row",
+      "strokeCount": 2,
+      "examples": [ "ぺん (pen) - pen", "ぺっと (petto) - pet" ]
+    },
+    {
+      "id": 71,
+      "character": "ぽ",
+      "romaji": "po",
+      "group": "handakuten",
+      "row": "ha-row",
+      "strokeCount": 5,
+      "examples": [ "ぽすと (posuto) - post", "ぽけっと (poketto) - pocket" ]
+    }
+  ]
+}
