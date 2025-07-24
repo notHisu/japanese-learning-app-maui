@@ -14,6 +14,7 @@
             <!-- Converters -->
             <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
             <converters:IntToBoolConverter x:Key="IntToBoolConverter" />
+            <converters:BoolToObjectConverter x:Key="BoolToObjectConverter" />
             <converters:ProgressToButtonTextConverter x:Key="ProgressToButtonTextConverter" />
             
         </ResourceDictionary>

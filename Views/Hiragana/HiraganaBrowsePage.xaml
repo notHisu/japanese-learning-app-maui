@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:JapaneseLearningApp.ViewModels.Hiragana"
+             xmlns:animations="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
              x:Class="JapaneseLearningApp.Views.Hiragana.HiraganaBrowsePage"
              Title="Browse Hiragana"
              BackgroundColor="#F8F9FA">
@@ -13,7 +14,66 @@
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <!-- Filter Chip Styles -->
+            <!-- Enhanced Animation Styles -->
+            <Style x:Key="TapAnimationStyle" TargetType="Border">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1.0" />
+                                    <Setter Property="Opacity" Value="1.0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.95" />
+                                    <Setter Property="Opacity" Value="0.9" />
+                                </VisualState.Setters>
+                                <VisualState.StateTriggers>
+                                    <StateTrigger />
+                                </VisualState.StateTriggers>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <!-- Search Bar Styles -->
+            <Style x:Key="SearchBarStyle" TargetType="SearchBar">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="#2C3E50" />
+                <Setter Property="PlaceholderColor" Value="#7F8C8D" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="CancelButtonColor" Value="#3498DB" />
+            </Style>
+
+            <Style x:Key="SearchContainerStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Stroke" Value="#E0E0E0" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 25" />
+                <Setter Property="StrokeThickness" Value="2" />
+                <Setter Property="Padding" Value="16,8" />
+                <Setter Property="Margin" Value="16,0" />
+                <Setter Property="Shadow">
+                    <Shadow Brush="#E0E0E0" Opacity="0.2" Radius="4" Offset="0,2" />
+                </Setter>
+            </Style>
+
+            <Style x:Key="ClearSearchButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#7F8C8D" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <!-- Enhanced Filter Chip Styles with Animation -->
             <Style x:Key="FilterChipStyle" TargetType="Border">
                 <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="Stroke" Value="#E0E0E0" />
@@ -25,12 +85,25 @@
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1.0" />
+                                    <Setter Property="BackgroundColor" Value="White" />
+                                    <Setter Property="Stroke" Value="#E0E0E0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.95" />
+                                    <Setter Property="BackgroundColor" Value="#F0F8FF" />
+                                    <Setter Property="Stroke" Value="#3498DB" />
+                                </VisualState.Setters>
+                            </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="#3498DB" />
                                     <Setter Property="Stroke" Value="#3498DB" />
-                                    <Setter Property="Scale" Value="0.95" />
+                                    <Setter Property="Scale" Value="1.05" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -58,7 +131,7 @@
                 </Setter>
             </Style>
 
-            <!-- Enhanced Character Card Styles -->
+            <!-- Enhanced Character Card Styles with Better Visual States -->
             <Style x:Key="CharacterCardStyle" TargetType="Border">
                 <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="Stroke" Value="#E8E8E8" />
@@ -76,13 +149,16 @@
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="Scale" Value="1.0" />
+                                    <Setter Property="Opacity" Value="1.0" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Pressed">
                                 <VisualState.Setters>
-                                    <Setter Property="Scale" Value="0.97" />
+                                    <Setter Property="Scale" Value="0.96" />
+                                    <Setter Property="Opacity" Value="0.9" />
                                     <Setter Property="BackgroundColor" Value="#F8F9FA" />
                                     <Setter Property="Stroke" Value="#3498DB" />
+                                    <Setter Property="StrokeThickness" Value="2" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -136,7 +212,7 @@
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
-            <!-- Progress Status Styles -->
+            <!-- Enhanced Progress Status Styles -->
             <Style x:Key="NotStudiedCardStyle" TargetType="Border" BasedOn="{StaticResource CharacterCardStyle}">
                 <Setter Property="BackgroundColor" Value="#FAFAFA" />
                 <Setter Property="Stroke" Value="#E8E8E8" />
@@ -145,24 +221,81 @@
             <Style x:Key="InProgressCardStyle" TargetType="Border" BasedOn="{StaticResource CharacterCardStyle}">
                 <Setter Property="BackgroundColor" Value="#F0F8FF" />
                 <Setter Property="Stroke" Value="#3498DB" />
+                <Setter Property="StrokeThickness" Value="2" />
             </Style>
 
             <Style x:Key="MasteredCardStyle" TargetType="Border" BasedOn="{StaticResource CharacterCardStyle}">
                 <Setter Property="BackgroundColor" Value="#F0FFF4" />
                 <Setter Property="Stroke" Value="#27AE60" />
+                <Setter Property="StrokeThickness" Value="2" />
             </Style>
 
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="Auto,*" RowSpacing="0">
+    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="0">
 
-        <!-- Filter Section -->
+        <!-- Search Section -->
         <Border Grid.Row="0"
                 BackgroundColor="White"
                 StrokeShape="Rectangle"
                 StrokeThickness="0"
-                Padding="0,16,0,16">
+                Padding="0,16,0,12">
+            <Grid ColumnDefinitions="*,Auto" 
+                  Margin="16,0">
+
+                <!-- Search Bar Container -->
+                <Border Grid.Column="0"
+                        Style="{StaticResource SearchContainerStyle}">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+
+                        <!-- Search Icon -->
+                        <Label Grid.Column="0"
+                               Text="🔍"
+                               FontSize="16"
+                               TextColor="#7F8C8D"
+                               VerticalOptions="Center"
+                               Margin="0,0,8,0" />
+
+                        <!-- Search Entry -->
+                        <Entry Grid.Column="1"
+                               Text="{Binding SearchText}"
+                               Placeholder="Search by character, romaji, or meaning..."
+                               BackgroundColor="#FFFFFF"
+                               TextColor="#2C3E50"
+                               PlaceholderColor="#7F8C8D"
+                               FontSize="16"
+                               VerticalOptions="Center" />
+
+                        <!-- Clear Search Button -->
+                        <Button Grid.Column="2"
+                                Text="✕"
+                                Style="{StaticResource ClearSearchButtonStyle}"
+                                Command="{Binding ClearSearchCommand}"
+                                IsVisible="{Binding IsSearchActive}" />
+                    </Grid>
+                </Border>
+
+                <!-- Search Info Label -->
+                <Label Grid.Column="1"
+                       Text="{Binding FilteredCharacters.Count, StringFormat='{0} found'}"
+                       FontSize="12"
+                       TextColor="#7F8C8D"
+                       VerticalOptions="Center"
+                       Margin="12,0,0,0"
+                       IsVisible="{Binding IsSearchActive}" />
+
+            </Grid>
+        </Border>
+
+        <!-- Filter Section with Transition -->
+        <Border Grid.Row="1"
+                BackgroundColor="White"
+                StrokeShape="Rectangle"
+                StrokeThickness="0"
+                Padding="0,0,0,16"
+                IsVisible="{Binding IsSearchActive, Converter={StaticResource InvertedBoolConverter}}"
+                Opacity="{Binding IsFilterTransitioning, Converter={StaticResource BoolToObjectConverter}, ConverterParameter='0.5|1.0'}">
             <ScrollView Orientation="Horizontal"
                         HorizontalScrollBarVisibility="Never">
                 <HorizontalStackLayout Spacing="0"
@@ -304,10 +437,14 @@
             </ScrollView>
         </Border>
 
-        <!-- Characters Grid -->
-        <ScrollView Grid.Row="1"
+        <!-- Characters Grid with Loading Skeleton -->
+        <ScrollView Grid.Row="2"
                     Padding="16,16,16,32">
-            <CollectionView ItemsSource="{Binding FilteredCharacters}"
+            
+            <!-- Actual Character Grid -->
+            <CollectionView x:Name="CharactersGrid"
+                            ItemsSource="{Binding FilteredCharacters}"
+                            IsVisible="{Binding ShowLoadingSkeleton, Converter={StaticResource InvertedBoolConverter}}"
                             BackgroundColor="Transparent">
 
                 <CollectionView.ItemsLayout>
@@ -321,7 +458,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <!-- Character Card with Dynamic Styling Based on Progress -->
+                            <!-- Character Card with Enhanced Animation and Dynamic Styling -->
                             <Border>
                                 <Border.Style>
                                     <Style TargetType="Border">
@@ -336,7 +473,7 @@
                                                 <Setter Property="Style" Value="{StaticResource MasteredCardStyle}" />
                                             </DataTrigger>
                                         </Style.Triggers>
-                                        <!-- Default style -->
+                                        <!-- Default style with enhanced animations -->
                                         <Setter Property="BackgroundColor" Value="White" />
                                         <Setter Property="Stroke" Value="#E8E8E8" />
                                         <Setter Property="StrokeShape" Value="RoundRectangle 16" />
@@ -353,13 +490,16 @@
                                                     <VisualState x:Name="Normal">
                                                         <VisualState.Setters>
                                                             <Setter Property="Scale" Value="1.0" />
+                                                            <Setter Property="Opacity" Value="1.0" />
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                     <VisualState x:Name="Pressed">
                                                         <VisualState.Setters>
-                                                            <Setter Property="Scale" Value="0.97" />
+                                                            <Setter Property="Scale" Value="0.96" />
+                                                            <Setter Property="Opacity" Value="0.9" />
                                                             <Setter Property="BackgroundColor" Value="#F8F9FA" />
                                                             <Setter Property="Stroke" Value="#3498DB" />
+                                                            <Setter Property="StrokeThickness" Value="2" />
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>
@@ -381,13 +521,13 @@
                                                Style="{StaticResource RomajiStyle}" />
                                     </StackLayout>
 
-                                    <!-- Progress Indicator Line -->
+                                    <!-- Enhanced Progress Indicator Line -->
                                     <BoxView Grid.Row="1"
-                                             HeightRequest="3"
+                                             HeightRequest="4"
                                              BackgroundColor="{Binding ProgressColor}"
-                                             HorizontalOptions="FillAndExpand"
                                              Margin="0,8,0,4"
-                                             CornerRadius="1.5" />
+                                             CornerRadius="2"
+                                             Opacity="0.8" />
 
                                     <!-- Stroke Count Indicator -->
                                     <Label Grid.Row="2"
@@ -401,7 +541,7 @@
                                 </Border.GestureRecognizers>
                             </Border>
 
-                            <!-- Progress Badge (shown when character is mastered) -->
+                            <!-- Enhanced Progress Badge (shown when character is mastered) -->
                             <Border Style="{StaticResource ProgressBadgeStyle}"
                                     IsVisible="{Binding IsMastered}"
                                     BackgroundColor="{Binding ProgressColor}">
@@ -409,38 +549,48 @@
                                        Style="{StaticResource ProgressBadgeLabelStyle}" />
                             </Border>
 
-                            <!-- Progress Status Icon (bottom left for in-progress) -->
+                            <!-- Enhanced Progress Status Icon (bottom left for in-progress) -->
                             <Border IsVisible="{Binding IsInProgress}"
                                     BackgroundColor="#3498DB"
                                     StrokeShape="RoundRectangle 8"
                                     Padding="6,3"
                                     HorizontalOptions="Start"
                                     VerticalOptions="End"
-                                    Margin="8,0,0,8">
+                                    Margin="8,0,0,8"
+                                    Shadow="{StaticResource Shadow}">
                                 <Label Text="⚡"
                                        FontSize="10"
                                        TextColor="White"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
                             </Border>
+
+                            <Border IsVisible="{Binding IsMastered}"
+                                BackgroundColor="Transparent"
+                                Stroke="#27AE60"
+                                StrokeShape="RoundRectangle 16"
+                                StrokeThickness="3"
+                                Opacity="0.6"
+                                x:Name="PulseRing">
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
-                <!-- Empty State -->
+                <!-- Enhanced Empty State -->
                 <CollectionView.EmptyView>
                     <StackLayout Padding="20"
                                  VerticalOptions="Center"
                                  HorizontalOptions="Center">
-                        <Label Text="📚"
+                        <Label Text="{Binding IsSearchActive, Converter={StaticResource BoolToObjectConverter}, ConverterParameter='🔍|📚'}"
                                FontSize="64"
                                HorizontalOptions="Center" />
-                        <Label Text="No characters found"
+                        <Label Text="{Binding IsSearchActive, Converter={StaticResource BoolToObjectConverter}, ConverterParameter='No search results|No characters found'}"
                                FontSize="18"
                                FontAttributes="Bold"
                                TextColor="#7F8C8D"
                                HorizontalOptions="Center" />
-                        <Label Text="Try selecting a different filter"
+                        <Label Text="{Binding IsSearchActive, Converter={StaticResource BoolToObjectConverter}, ConverterParameter='Try a different search term|Try selecting a different filter'}"
                                FontSize="14"
                                TextColor="#95A5A6"
                                HorizontalOptions="Center"
@@ -452,7 +602,7 @@
         </ScrollView>
 
         <!-- Loading Indicator -->
-        <ActivityIndicator Grid.Row="1"
+        <ActivityIndicator Grid.Row="2"
                            IsVisible="{Binding IsLoading}"
                            IsRunning="{Binding IsLoading}"
                            Color="#3498DB"
