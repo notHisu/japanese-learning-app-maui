@@ -1,12 +1,220 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage x:Class="JapaneseLearningApp.Views.Hiragana.HiraganaPracticePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="JapaneseLearningApp.Views.Hiragana.HiraganaPracticePage"
-             Title="HiraganaPracticePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Hiragana Practice Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:vm="clr-namespace:JapaneseLearningApp.ViewModels.Hiragana"
+             Title="Practice Hiragana">
+
+    <ContentPage.BindingContext>
+        <vm:HiraganaPracticeViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <!-- Setup View -->
+        <ScrollView IsVisible="{Binding ShowSetup}">
+            <VerticalStackLayout Padding="20" Spacing="20">
+
+                <!-- Header -->
+                <Frame BackgroundColor="#6200EE" HasShadow="True">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Practice Setup" 
+                               FontSize="24" 
+                               FontAttributes="Bold" 
+                               TextColor="White" 
+                               HorizontalOptions="Center" />
+                        <Label Text="Configure your practice session" 
+                               FontSize="14" 
+                               TextColor="White" 
+                               HorizontalOptions="Center" 
+                               Opacity="0.8" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Practice Mode Selection -->
+                <Frame BackgroundColor="White" HasShadow="True">
+                    <VerticalStackLayout Spacing="15">
+                        <Label Text="Practice Mode" FontSize="18" FontAttributes="Bold" />
+
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                            <!-- Recognition Mode -->
+                            <Button Grid.Column="0" 
+                                    Text="Recognition&#x0a;あ → a" 
+                                    FontSize="12"
+                                    BackgroundColor="{Binding PracticeMode, Converter={StaticResource ModeToColorConverter}, ConverterParameter=Recognition}"
+                                    Command="{Binding SelectPracticeModeCommand}"
+                                    CommandParameter="Recognition" />
+
+                            <!-- Production Mode -->
+                            <Button Grid.Column="1" 
+                                    Text="Production&#x0a;a → あ" 
+                                    FontSize="12"
+                                    BackgroundColor="{Binding PracticeMode, Converter={StaticResource ModeToColorConverter}, ConverterParameter=Production}"
+                                    Command="{Binding SelectPracticeModeCommand}"
+                                    CommandParameter="Production" />
+
+                            <!-- Multiple Choice Mode -->
+                            <Button Grid.Column="2" 
+                                    Text="Multiple&#x0a;Choice" 
+                                    FontSize="12"
+                                    BackgroundColor="{Binding PracticeMode, Converter={StaticResource ModeToColorConverter}, ConverterParameter=MultipleChoice}"
+                                    Command="{Binding SelectPracticeModeCommand}"
+                                    CommandParameter="MultipleChoice" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Question Count -->
+                <Frame BackgroundColor="White" HasShadow="True">
+                    <VerticalStackLayout Spacing="15">
+                        <Label Text="Number of Questions" FontSize="18" FontAttributes="Bold" />
+
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                            <Button Grid.Column="0" Text="5" Command="{Binding SetQuestionCountCommand}" CommandParameter="5" />
+                            <Button Grid.Column="1" Text="10" Command="{Binding SetQuestionCountCommand}" CommandParameter="10" />
+                            <Button Grid.Column="2" Text="20" Command="{Binding SetQuestionCountCommand}" CommandParameter="20" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Start Button -->
+                <Button Text="Start Practice" 
+                        FontSize="18" 
+                        FontAttributes="Bold"
+                        BackgroundColor="#4CAF50" 
+                        TextColor="White"
+                        HeightRequest="60"
+                        Command="{Binding StartPracticeCommand}" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Practice View -->
+        <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" 
+              Padding="20" 
+              IsVisible="{Binding IsPracticeActive}">
+
+            <!-- Row 0: Progress Header -->
+            <Frame Grid.Row="0" BackgroundColor="#F5F5F5" HasShadow="False">
+                <Grid ColumnDefinitions="*,Auto,Auto">
+                    <Label Grid.Column="0" 
+                           Text="{Binding CurrentQuestionNumber, StringFormat='Question {0} of {1}', ConverterParameter={Binding TotalQuestions}}" 
+                           FontSize="16" 
+                           VerticalOptions="Center" />
+                    <Label Grid.Column="1" 
+                           Text="{Binding StreakCount, StringFormat='🔥 {0}'}" 
+                           FontSize="16" 
+                           VerticalOptions="Center"
+                           IsVisible="{Binding StreakCount, Converter={StaticResource IntToBoolConverter}}" />
+                    <Label Grid.Column="2" 
+                           Text="{Binding CorrectCount, StringFormat='{0}/{1}', ConverterParameter={Binding CurrentQuestionNumber}}" 
+                           FontSize="16" 
+                           VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+            <!-- Row 1: Progress Bar -->
+            <ProgressBar Grid.Row="1" 
+                         Progress="{Binding ProgressPercentage, Converter={StaticResource PercentageToProgressConverter}}" 
+                         ProgressColor="#6200EE" 
+                         BackgroundColor="#E0E0E0"
+                         HeightRequest="8"
+                         Margin="0,10" />
+
+            <!-- Row 2: Main Practice Area -->
+            <Frame Grid.Row="2" 
+                   BackgroundColor="White" 
+                   HasShadow="True" 
+                   Padding="30"
+                   VerticalOptions="Center">
+
+                <VerticalStackLayout Spacing="30">
+
+                    <!-- Question -->
+                    <Label Text="{Binding CurrentQuestion}" 
+                           FontSize="18" 
+                           HorizontalOptions="Center" 
+                           HorizontalTextAlignment="Center" />
+
+                    <!-- Character Display (for Recognition mode) -->
+                    <Label Text="{Binding CurrentCharacter.Character}" 
+                           FontSize="72" 
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           IsVisible="{Binding PracticeMode, Converter={StaticResource ModeVisibilityConverter}, ConverterParameter=Recognition}" />
+
+                    <!-- Romaji Display (for Production mode) -->
+                    <Label Text="{Binding CurrentCharacter.Romanji}" 
+                           FontSize="48" 
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           IsVisible="{Binding PracticeMode, Converter={StaticResource ModeVisibilityConverter}, ConverterParameter=Production}" />
+
+                    <!-- Result Feedback -->
+                    <Frame IsVisible="{Binding ShowResult}" 
+                           BackgroundColor="{Binding IsCorrect, Converter={StaticResource BoolToColorConverter}}"
+                           Padding="15">
+                        <Label Text="{Binding FeedbackMessage}" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center" />
+                    </Frame>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Row 3: Answer Input Area -->
+            <StackLayout Grid.Row="3" Spacing="15" Margin="0,20">
+
+                <!-- Text Entry (for Recognition mode) -->
+                <Entry Text="{Binding UserAnswer}" 
+                       Placeholder="Type the romaji..." 
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       IsVisible="{Binding PracticeMode, Converter={StaticResource ModeVisibilityConverter}, ConverterParameter=Recognition}"
+                       ReturnCommand="{Binding CheckAnswerCommand}" />
+
+                <!-- Multiple Choice Options -->
+                <CollectionView ItemsSource="{Binding MultipleChoiceOptions}"
+                                IsVisible="{Binding PracticeMode, Converter={StaticResource ModeVisibilityConverter}, ConverterParameter=Production}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Button Text="{Binding .}" 
+                                    FontSize="24"
+                                    HeightRequest="80"
+                                    BackgroundColor="{Binding ., Converter={StaticResource SelectedOptionColorConverter}, ConverterParameter={Binding Source={x:Reference Name=PracticePage}, Path=BindingContext.SelectedAnswer}}"
+                                    Command="{Binding Source={x:Reference Name=PracticePage}, Path=BindingContext.SelectMultipleChoiceOptionCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+
+            <!-- Row 4: Action Buttons -->
+            <Grid Grid.Row="4" ColumnDefinitions="*,*,*" ColumnSpacing="10" Margin="0,20,0,0">
+                <Button Grid.Column="0" 
+                        Text="Skip" 
+                        BackgroundColor="#757575"
+                        TextColor="White"
+                        Command="{Binding NextQuestionCommand}" />
+                <Button Grid.Column="1" 
+                        Text="Check" 
+                        BackgroundColor="#6200EE"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        IsEnabled="{Binding CanCheckAnswer}"
+                        Command="{Binding CheckAnswerCommand}" />
+                <Button Grid.Column="2" 
+                        Text="End" 
+                        BackgroundColor="#F44336"
+                        TextColor="White"
+                        Command="{Binding EndPracticeCommand}" />
+            </Grid>
+
+        </Grid>
+    </Grid>
 </ContentPage>

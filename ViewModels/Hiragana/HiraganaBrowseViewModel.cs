@@ -133,7 +133,7 @@ namespace JapaneseLearningApp.ViewModels.Hiragana
                 characters = ApplySearchFilter(characters, SearchText);
             }
 
-            // Update the filtered collection with animation-friendly approach
+            // Update the filtered collection
             FilteredCharacters.Clear();
             foreach (var character in characters.OrderBy(c => c.Id))
             {
