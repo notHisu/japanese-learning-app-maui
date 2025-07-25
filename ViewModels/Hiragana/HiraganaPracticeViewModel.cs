@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JapaneseLearningApp.Models;
+using JapaneseLearningApp.Models.Enums;
 using JapaneseLearningApp.Services;
 using System.Collections.ObjectModel;
 
@@ -70,6 +71,18 @@ namespace JapaneseLearningApp.ViewModels.Hiragana
 
         [ObservableProperty]
         private bool canCheckAnswer = false;
+
+        [ObservableProperty]
+        private bool showMultipleChoiceOptions = false;
+
+        [ObservableProperty]
+        private bool isRecognitionSelected = true;
+
+        [ObservableProperty]
+        private bool isProductionSelected = false;
+
+        [ObservableProperty]
+        private bool isMultipleChoiceSelected = false;
 
         // Constructor
         public HiraganaPracticeViewModel(IHiraganaService hiraganaService, IProgressService progressService)
@@ -163,6 +176,11 @@ namespace JapaneseLearningApp.ViewModels.Hiragana
             if (Enum.TryParse<PracticeMode>(mode, out var parsedMode))
             {
                 PracticeMode = parsedMode;
+
+                // Update selection states
+                IsRecognitionSelected = parsedMode == PracticeMode.Recognition;
+                IsProductionSelected = parsedMode == PracticeMode.Production;
+                IsMultipleChoiceSelected = parsedMode == PracticeMode.MultipleChoice;
             }
         }
 
@@ -187,6 +205,16 @@ namespace JapaneseLearningApp.ViewModels.Hiragana
             UserAnswer = option;
             CanCheckAnswer = !string.IsNullOrEmpty(option);
         }
+
+        [RelayCommand]
+        private void SetQuestionCount(string count)
+        {
+            if (int.TryParse(count, out var questionCount))
+            {
+                TotalQuestions = questionCount;
+            }
+        }
+
 
         // Private methods
         private async Task LoadCharacterPoolAsync()
@@ -229,19 +257,20 @@ namespace JapaneseLearningApp.ViewModels.Hiragana
             var random = new Random();
             return availableCharacters[random.Next(availableCharacters.Count)];
         }
-
         private async Task GenerateQuestionAsync()
         {
+            // Reset visibility flags
+            ShowMultipleChoiceOptions = false;
+
             switch (PracticeMode)
             {
                 case PracticeMode.Recognition:
                     await GenerateRecognitionQuestionAsync();
                     break;
                 case PracticeMode.Production:
-                    await GenerateProductionQuestionAsync();
-                    break;
                 case PracticeMode.MultipleChoice:
-                    await GenerateMultipleChoiceQuestionAsync();
+                    ShowMultipleChoiceOptions = true;
+                    await GenerateProductionQuestionAsync();
                     break;
             }
         }

@@ -176,18 +176,18 @@
 
                 <!-- Multiple Choice Options -->
                 <CollectionView ItemsSource="{Binding MultipleChoiceOptions}"
-                                IsVisible="{Binding PracticeMode, Converter={StaticResource ModeVisibilityConverter}, ConverterParameter=Production}">
+                IsVisible="{Binding PracticeMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter='Production,MultipleChoice'}">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Button Text="{Binding .}" 
-                                    FontSize="24"
-                                    HeightRequest="80"
-                                    BackgroundColor="{Binding ., Converter={StaticResource SelectedOptionColorConverter}, ConverterParameter={Binding Source={x:Reference Name=PracticePage}, Path=BindingContext.SelectedAnswer}}"
-                                    Command="{Binding Source={x:Reference Name=PracticePage}, Path=BindingContext.SelectMultipleChoiceOptionCommand}"
-                                    CommandParameter="{Binding .}" />
+                    FontSize="24"
+                    HeightRequest="80"
+                    BackgroundColor="{Binding ., Converter={StaticResource SelectedOptionColorConverter}}"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectMultipleChoiceOptionCommand}"
+                    CommandParameter="{Binding .}" />
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

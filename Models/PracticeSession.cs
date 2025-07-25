@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JapaneseLearningApp.Models.Enums; // Add this line
+using System;
 using System.Collections.Generic;
 
 namespace JapaneseLearningApp.Models
@@ -8,7 +9,7 @@ namespace JapaneseLearningApp.Models
         public string SessionId { get; set; } = Guid.NewGuid().ToString();
         public DateTime StartTime { get; set; }
         public DateTime? EndTime { get; set; }
-        public PracticeMode Mode { get; set; }
+        public PracticeMode Mode { get; set; } // This will now use the enum from Enums folder
         public int TotalQuestions { get; set; }
         public int CorrectAnswers { get; set; }
         public List<int> PracticedCharacterIds { get; set; } = new();
@@ -26,12 +27,5 @@ namespace JapaneseLearningApp.Models
         public bool IsCorrect { get; set; }
         public TimeSpan TimeTaken { get; set; }
         public DateTime Timestamp { get; set; }
-    }
-
-    public enum PracticeMode
-    {
-        Recognition,  // Show hiragana → type romaji
-        Production,   // Show romaji → select hiragana
-        MultipleChoice // Show question → select from 4 options
     }
 }
