@@ -15,7 +15,7 @@
             <VerticalStackLayout Padding="20" Spacing="20">
 
                 <!-- Header -->
-                <Frame BackgroundColor="#6200EE" HasShadow="True">
+                <Border BackgroundColor="#6200EE">
                     <VerticalStackLayout Spacing="5">
                         <Label Text="Practice Setup" 
                                FontSize="24" 
@@ -28,10 +28,10 @@
                                HorizontalOptions="Center" 
                                Opacity="0.8" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
                 <!-- Practice Mode Selection -->
-                <Frame BackgroundColor="White" HasShadow="True">
+                <Border BackgroundColor="White">
                     <VerticalStackLayout Spacing="15">
                         <Label Text="Practice Mode" FontSize="18" FontAttributes="Bold" />
 
@@ -61,10 +61,10 @@
                                     CommandParameter="MultipleChoice" />
                         </Grid>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
                 <!-- Question Count -->
-                <Frame BackgroundColor="White" HasShadow="True">
+                <Border BackgroundColor="White">
                     <VerticalStackLayout Spacing="15">
                         <Label Text="Number of Questions" FontSize="18" FontAttributes="Bold" />
 
@@ -74,7 +74,7 @@
                             <Button Grid.Column="2" Text="20" Command="{Binding SetQuestionCountCommand}" CommandParameter="20" />
                         </Grid>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
                 <!-- Start Button -->
                 <Button Text="Start Practice" 
@@ -94,7 +94,7 @@
               IsVisible="{Binding IsPracticeActive}">
 
             <!-- Row 0: Progress Header -->
-            <Frame Grid.Row="0" BackgroundColor="#F5F5F5" HasShadow="False">
+            <Border Grid.Row="0" BackgroundColor="#F5F5F5">
                 <Grid ColumnDefinitions="*,Auto,Auto">
                     <Label Grid.Column="0" 
                            Text="{Binding CurrentQuestionNumber, StringFormat='Question {0} of {1}', ConverterParameter={Binding TotalQuestions}}" 
@@ -110,7 +110,7 @@
                            FontSize="16" 
                            VerticalOptions="Center" />
                 </Grid>
-            </Frame>
+            </Border>
 
             <!-- Row 1: Progress Bar -->
             <ProgressBar Grid.Row="1" 
@@ -121,9 +121,8 @@
                          Margin="0,10" />
 
             <!-- Row 2: Main Practice Area -->
-            <Frame Grid.Row="2" 
+            <Border Grid.Row="2" 
                    BackgroundColor="White" 
-                   HasShadow="True" 
                    Padding="30"
                    VerticalOptions="Center">
 
@@ -150,7 +149,7 @@
                            IsVisible="{Binding PracticeMode, Converter={StaticResource ModeVisibilityConverter}, ConverterParameter=Production}" />
 
                     <!-- Result Feedback -->
-                    <Frame IsVisible="{Binding ShowResult}" 
+                    <Border IsVisible="{Binding ShowResult}" 
                            BackgroundColor="{Binding IsCorrect, Converter={StaticResource BoolToColorConverter}}"
                            Padding="15">
                         <Label Text="{Binding FeedbackMessage}" 
@@ -158,10 +157,10 @@
                                FontAttributes="Bold"
                                TextColor="White"
                                HorizontalOptions="Center" />
-                    </Frame>
+                    </Border>
 
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!-- Row 3: Answer Input Area -->
             <StackLayout Grid.Row="3" Spacing="15" Margin="0,20">

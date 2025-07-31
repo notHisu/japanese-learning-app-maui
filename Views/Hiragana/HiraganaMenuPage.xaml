@@ -7,7 +7,6 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
-            
             <!-- Header Section -->
             <StackLayout Spacing="8">
                 <Label Text="Hiragana ひらがな" 
@@ -24,6 +23,7 @@
             <!-- Statistics Card -->
             <Border BackgroundColor="White" 
                     StrokeShape="RoundRectangle 10"
+                    IsVisible="True"
                    Padding="20">
                 <Grid RowDefinitions="Auto,Auto,Auto,Auto" 
                       ColumnDefinitions="*,*" 
